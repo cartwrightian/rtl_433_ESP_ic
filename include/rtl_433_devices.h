@@ -35,6 +35,7 @@
   DECL(cardin)                                                                 \
   DECL(chuango)                                                                \
   DECL(companion_wtr001)                                                       \
+  DECL(current_cost)                                                           \
   DECL(digitech_xc0324)                                                        \
   DECL(dish_remote_6_3)                                                        \
   DECL(ecowitt)                                                                \
