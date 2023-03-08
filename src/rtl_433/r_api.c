@@ -271,6 +271,8 @@ void register_all_protocols(r_cfg_t *cfg, unsigned disabled)
         if (cfg->devices[i].disabled <= disabled)
         {
             register_protocol(cfg, &cfg->devices[i], NULL);
+        } else if (cfg->verbosity) {
+            fprintf(stderr, "Protocol disabled %d %s", i, cfg->devices[i].name);
         }
     }
 }
