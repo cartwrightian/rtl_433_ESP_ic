@@ -115,7 +115,7 @@
   DECL(cotech_36_7959)                                                         \
   DECL(honeywell)                                                              \
   /* Add new decoders here. */
-#define NUMOFDEVICES 104
+#define NUMOFDEVICES 105
 /* Add new decoders here. */
 #else
 /**
