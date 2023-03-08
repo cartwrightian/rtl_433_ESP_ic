@@ -513,6 +513,11 @@ int run_fsk_demods(list_t *r_devs, pulse_data_t *fsk_pulse_data)
 
     for (void **iter = r_devs->elems; iter && *iter; ++iter) {
         r_device *r_dev = *iter;
+
+#ifdef RTL_DEBUG
+            logprintfLn(LOG_DEBUG, "demod(%d) - %s", r_dev->modulation, r_dev->name);
+#endif
+
         switch (r_dev->modulation) {
         // OOK decoders
         case OOK_PULSE_PCM_RZ:
