@@ -504,7 +504,8 @@ int run_ook_demods(list_t *r_devs, pulse_data_t *pulse_data)
     return p_events;
 }
 
-/*
+
+#ifdef ENABLE_FSK_PULSE_PCM
 
 int run_fsk_demods(list_t *r_devs, pulse_data_t *fsk_pulse_data)
 {
@@ -540,6 +541,10 @@ int run_fsk_demods(list_t *r_devs, pulse_data_t *fsk_pulse_data)
 
     return p_events;
 }
+
+#endif
+
+/*
 
 // handlers 
 

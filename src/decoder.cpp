@@ -204,8 +204,11 @@ void rtlSetup() {
       // These pulse demods have been tested (85), ymmv for the others
       if (cfg->devices[i].modulation == OOK_PULSE_PPM ||
           cfg->devices[i].modulation == OOK_PULSE_PWM ||
-          cfg->devices[i].modulation == OOK_PULSE_MANCHESTER_ZEROBIT ||
-          cfg->devices[i].modulation == FSK_PULSE_PCM) {
+          cfg->devices[i].modulation == OOK_PULSE_MANCHESTER_ZEROBIT 
+#ifdef ENABLE_FSK_PULSE_PCM
+          || cfg->devices[i].modulation == FSK_PULSE_PCM
+#endif
+          ) {
         numberEnabled++;
       } else {
         cfg->devices[i].disabled = 1;
@@ -320,6 +323,11 @@ void rtl_433_DecoderTask(void *pvParameters) {
     r_cfg_t *cfg = &g_cfg;
     cfg->demod->pulse_data = rtl_pulses;
     int events = run_ook_demods(&cfg->demod->r_devs, rtl_pulses);
+#ifdef ENABLE_FSK_PULSE_PCM
+  if (events == 0) { 
+    events = run_fsk_demods(&cfg->demod->r_devs, rtl_pulses);
+  }
+#endif
     if (events == 0) {
       rtl_433_ESP::unparsedSignals++;
 #ifdef PUBLISH_UNPARSED
