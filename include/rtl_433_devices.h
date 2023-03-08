@@ -35,7 +35,6 @@
   DECL(cardin)                                                                 \
   DECL(chuango)                                                                \
   DECL(companion_wtr001)                                                       \
-  DECL(current_cost)                                                           \
   DECL(digitech_xc0324)                                                        \
   DECL(dish_remote_6_3)                                                        \
   DECL(ecowitt)                                                                \
@@ -115,7 +114,7 @@
   DECL(cotech_36_7959)                                                         \
   DECL(honeywell)                                                              \
   /* Add new decoders here. */
-#define NUMOFDEVICES 105
+#define NUMOFDEVICES 104
 /* Add new decoders here. */
 #else
 /**
@@ -123,8 +122,9 @@
  */
 #define DEVICES                                                                \
   DECL(oregon_scientific)                                                      \
+  DECL(current_cost)                                                           \
 /* Add new personal decoders here. */
-#define NUMOFDEVICES 1
+#define NUMOFDEVICES 2
 #endif
 
 #define DECL(name) extern r_device name;

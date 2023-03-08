@@ -165,12 +165,13 @@ void rtlSetup() {
     memcpy(&cfg->devices[101], &x10_sec, sizeof(r_device));
     memcpy(&cfg->devices[102], &cotech_36_7959, sizeof(r_device));
     memcpy(&cfg->devices[103], &honeywell, sizeof(r_device));
-    memcpy(&cfg->devices[104], &current_cost, sizeof(r_device));
 
     // end of fragement
 
 #else
     memcpy(&cfg->devices[0], &oregon_scientific, sizeof(r_device));
+    memcpy(&cfg->devices[1], &current_cost, sizeof(r_device));
+
 #endif
 
 #ifdef RTL_FLEX
