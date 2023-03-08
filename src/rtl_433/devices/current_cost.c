@@ -12,6 +12,8 @@
 
 #include "decoder.h"
 
+static bitbuffer_t packet;
+
 /**
 CurrentCost TX, CurrentCost EnviR current sensors.
 
@@ -20,7 +22,7 @@ CurrentCost TX, CurrentCost EnviR current sensors.
 static int current_cost_decode(r_device *decoder, bitbuffer_t *bitbuffer)
 {
     data_t *data;
-    bitbuffer_t packet = {0};
+    //bitbuffer_t packet = {0};
     uint8_t *b;
     int is_envir = 0;
     unsigned int start_pos;
@@ -54,6 +56,8 @@ static int current_cost_decode(r_device *decoder, bitbuffer_t *bitbuffer)
 
         start_pos += 45;
     }
+
+    bitbuffer_clear(&packet);
 
     start_pos = bitbuffer_manchester_decode(bitbuffer, 0, start_pos, &packet, 0);
 
