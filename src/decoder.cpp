@@ -86,6 +86,7 @@ void rtlSetup() {
     memcpy(&cfg->devices[22], &calibeur_RF104, sizeof(r_device));
     memcpy(&cfg->devices[23], &cardin, sizeof(r_device));
     memcpy(&cfg->devices[24], &chuango, sizeof(r_device));
+    memcpy(&cfg->devices[24], &current_cost, sizeof(r_device));
     memcpy(&cfg->devices[25], &companion_wtr001, sizeof(r_device));
     memcpy(&cfg->devices[26], &digitech_xc0324, sizeof(r_device));
     memcpy(&cfg->devices[27], &dish_remote_6_3, sizeof(r_device));
