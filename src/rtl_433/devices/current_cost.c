@@ -39,11 +39,13 @@ static int current_cost_decode(r_device *decoder, bitbuffer_t *bitbuffer)
 
     start_pos = bitbuffer_search(bitbuffer, 0, 0, init_pattern_envir, 48);
 
+    uint16_t bits_per_row = bitbuffer->bits_per_row[0];
+
 #ifdef CURRENT_COST_DEBUG
-    fprintf(stderr, "start_pos %d", start_pos);
+    fprintf(stderr, "start_pos %u bits_per_row %u\n", start_pos, bits_per_row);
 #endif
 
-    if (start_pos + 47 + 112 <= bitbuffer->bits_per_row[0]) {
+    if (start_pos + 47 + 112 <= bits_per_row) {
         is_envir = 1;
         // bitbuffer_search matches patterns starting on a high bit, but the EnviR protocol
         // starts with a low bit, so we have to adjust the offset by 1 to prevent the
@@ -56,9 +58,9 @@ static int current_cost_decode(r_device *decoder, bitbuffer_t *bitbuffer)
 
         unsigned int begin = start_pos + 45 + 112 ;
 
-        if (begin > bitbuffer -> bits_per_row[0]) {
+        if (begin > bits_per_row) {
 #ifdef CURRENT_COST_DEBUG
-            fprintf(stderr, "current_cost abort %u > %u bits per row", begin, bitbuffer -> bits_per_row[0]);
+            fprintf(stderr, "current_cost abort %u > %u bits per row\n", begin, bits_per_row);
 #endif
             return DECODE_ABORT_EARLY;
         }
@@ -69,14 +71,14 @@ static int current_cost_decode(r_device *decoder, bitbuffer_t *bitbuffer)
     bitbuffer_clear(&packet);
 
 #ifdef CURRENT_COST_DEBUG
-    fprintf(stderr, "updated start_pos %u", start_pos);
+    fprintf(stderr, "updated start_pos %u\n", start_pos);
 #endif
 
     start_pos = bitbuffer_manchester_decode(bitbuffer, 0, start_pos, &packet, 0);
 
     if (packet.bits_per_row[0] < 64) {
 #ifdef CURRENT_COST_DEBUG
-        fprintf(stderr, "current_cost abort bits per row %u < 64>", packet.bits_per_row[0]);
+        fprintf(stderr, "current_cost abort bits per row %u < 64\n", packet.bits_per_row[0]);
 #endif
         return DECODE_ABORT_EARLY;
     }
@@ -84,7 +86,7 @@ static int current_cost_decode(r_device *decoder, bitbuffer_t *bitbuffer)
     b = packet.bb[0];
 
 #ifdef CURRENT_COST_DEBUG
-    fprintf(stderr, "initial byte %u %x", b[0], b[0]);
+    fprintf(stderr, "initial byte %u %x\n", b[0], b[0]);
 #endif
     // Read data
     // Meter (b[0] = 0000xxxx) bits 5 and 4 are "unknown", but always 0 to date.
