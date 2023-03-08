@@ -204,7 +204,8 @@ void rtlSetup() {
       // These pulse demods have been tested (85), ymmv for the others
       if (cfg->devices[i].modulation == OOK_PULSE_PPM ||
           cfg->devices[i].modulation == OOK_PULSE_PWM ||
-          cfg->devices[i].modulation == OOK_PULSE_MANCHESTER_ZEROBIT) {
+          cfg->devices[i].modulation == OOK_PULSE_MANCHESTER_ZEROBIT ||
+          cfg->devices[i].modulation == FSK_PULSE_PCM) {
         numberEnabled++;
       } else {
         cfg->devices[i].disabled = 1;
