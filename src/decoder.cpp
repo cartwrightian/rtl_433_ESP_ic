@@ -245,6 +245,8 @@ void rtlSetup() {
 #endif
       if (cfg->devices[i].disabled <= 0) {
         register_protocol(cfg, &cfg->devices[i], NULL);
+      } else if (cfg->verbosity) {
+        fprintf(stderr, "Protocol disabled %d %s", i, cfg->devices[i].name);
       }
     }
 
