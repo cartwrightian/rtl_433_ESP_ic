@@ -460,7 +460,7 @@ int run_ook_demods(list_t *r_devs, pulse_data_t *pulse_data)
             if (r_dev->priority != priority)
                 continue;
 #ifdef RTL_DEBUG
-            logprintfLn(LOG_DEBUG, "demod(%d) - %s", r_dev->modulation, r_dev->name);
+            logprintfLn(LOG_DEBUG, "ook demod(%d) - %s", r_dev->modulation, r_dev->name);
 #endif
             switch (r_dev->modulation) {
             case OOK_PULSE_PCM_RZ:
@@ -510,6 +510,10 @@ int run_ook_demods(list_t *r_devs, pulse_data_t *pulse_data)
 int run_fsk_demods(list_t *r_devs, pulse_data_t *fsk_pulse_data)
 {
     int p_events = 0;
+
+#ifdef RTL_DEBUG
+            logprintfLn(LOG_DEBUG, "fsk demod");
+#endif
 
     for (void **iter = r_devs->elems; iter && *iter; ++iter) {
         r_device *r_dev = *iter;
