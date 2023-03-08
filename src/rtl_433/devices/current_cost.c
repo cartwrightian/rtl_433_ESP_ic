@@ -61,6 +61,7 @@ static int current_cost_decode(r_device *decoder, bitbuffer_t *bitbuffer)
         if (begin > bits_per_row) {
 #ifdef CURRENT_COST_DEBUG
             fprintf(stderr, "current_cost abort %u > %u bits per row\n", begin, bits_per_row);
+            print_bitbuffer(bitbuffer, 0);
 #endif
             return DECODE_ABORT_EARLY;
         }
