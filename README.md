@@ -4,15 +4,22 @@ Works ok but not tested with any other devices, purely an experiment and no plan
 
 No attempt to tune sx1278 parameters as PSK worked and this device out of the box.
 
+Code changes marked with #ifdef ENABLE_FSK_PULSE_PCM
+
+Had to update current_cost.c so it doesn't put the packet buffer on the stack.
+
 For openmqttgateway
 
-platformio.ini
+for platformio.ini
 
-change rtl_433_ESP to
+changed rtl_433_ESP to
+```
 rtl_433_ESP = https://github.com/cartwrightian/rtl_433_ESP_ic
+```
 
-environments.ini
+for environments.ini, updated env:lilygo-rtl_433
 
+```
 [env:lilygo-rtl_433]
 ;build_type = debug not helping
 platform = ${com.esp32_platform}
@@ -49,3 +56,6 @@ build_flags =
   ;'-DPUBLISH_UNPARSED=true'
 ;  '-DCURRENT_COST_DEBUG=true'
 ;  '-DRF_MODULE_INIT_STATUS'
+```
+
+
