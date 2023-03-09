@@ -183,8 +183,16 @@ void rtl_433_ESP::initReceiver(byte inputPin, float receiveFrequency) {
   pinMode(ONBOARD_LED, OUTPUT);
   digitalWrite(ONBOARD_LED, LOW);
 
+#ifndef ENABLE_FSK_PULSE_PCM
   state = radio.setOOK(true);
   RADIOLIB_STATE(state, "setOOK");
+  logprintfLn(LOG_INFO, STR_MODULE " setOOK");
+#else
+  state = radio.setOOK(true);
+  RADIOLIB_STATE(state, "setPSK");
+    logprintfLn(LOG_INFO, STR_MODULE " setPSK");
+
+#endif
 
   state = radio.setCrcFiltering(false);
   RADIOLIB_STATE(state, "setCrcFiltering");
