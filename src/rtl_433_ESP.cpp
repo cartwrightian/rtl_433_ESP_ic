@@ -190,7 +190,7 @@ void rtl_433_ESP::initReceiver(byte inputPin, float receiveFrequency) {
 #else
   state = radio.setOOK(false);
   RADIOLIB_STATE(state, "setPSK");
-    logprintfLn(LOG_INFO, STR_MODULE " setPSK");
+  logprintfLn(LOG_INFO, STR_MODULE " setPSK");
 #endif
 
   state = radio.setCrcFiltering(false);
@@ -220,6 +220,8 @@ void rtl_433_ESP::initReceiver(byte inputPin, float receiveFrequency) {
 #endif
 
 #if defined(RF_SX1276) || defined(RF_SX1278)
+
+#ifndef ENABLE_FSK_PULSE_PCM
   state = radio.setDataShapingOOK(2); // Default 0 ( 0, 1, 2 )
   RADIOLIB_STATE(state, "setDataShapingOOK");
 
@@ -238,6 +240,8 @@ void rtl_433_ESP::initReceiver(byte inputPin, float receiveFrequency) {
   state = radio.setOokFixedOrFloorThreshold(
       OokFixedThreshold); // Default 0x0C RADIOLIB_SX127X_OOK_FIXED_THRESHOLD
   RADIOLIB_STATE(state, "OokFixedThreshold");
+
+#endif
 
   state = radio.setRSSIConfig(
       RADIOLIB_SX127X_RSSI_SMOOTHING_SAMPLES_2,
