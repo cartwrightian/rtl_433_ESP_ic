@@ -2,7 +2,7 @@ Fork of rtl_443_ESP to experiment with getting current cost device working.
 
 Works ok but not tested with any other devices, purely an experiment and no plans to add other devices etc. 
 
-No attempt to tune sx1278 parameters as PSK worked and this device out of the box.
+No attempt to tune sx1278 parameters as PSK worked with this device out of the box.
 
 Code changes marked with #ifdef ENABLE_FSK_PULSE_PCM
 
